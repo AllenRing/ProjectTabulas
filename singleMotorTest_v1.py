@@ -15,6 +15,7 @@ import pigpio
 
 pi = pigpio.pi()
 systemOn = True
+motorOneSpeed = 185
 
 #-----------------------------
 #------Begin the program------
