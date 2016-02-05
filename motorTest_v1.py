@@ -29,7 +29,12 @@ def initializeMotors(motorOne, motorTwo, motorThree, motorFour):
 
     pi.set_PWM_frequency(motorFour, 400)
     pi.set_PWM_range(motorFour, 500)
-
+    
+    global motorOne = defaultSpeed
+    global motorTwo = defaultSpeed
+    global motorThree = defaultSpeed
+    global motorFour = defaultSpeed
+    
 def shutdownMotor(motorSpeed):
     motorSpeed = 0
     return motorSpeed
@@ -67,10 +72,10 @@ motorFour = res
 
 initializeMotors(motorOne, motorTwo, motorThree, motorFour)
 
-pi.set_PWM_dutycycle(motorOne,  motorOneSpeed)
-pi.set_PWM_dutycycle(motorTwo,  motorTwoSpeed)
-pi.set_PWM_dutycycle(motorThree,  motorThreeSpeed)
-pi.set_PWM_dutycycle(motorFour,  motorFourSpeed)
+pi.set_PWM_dutycycle(motorOne,  defaultSpeed)
+pi.set_PWM_dutycycle(motorTwo,  defaultSpeed)
+pi.set_PWM_dutycycle(motorThree,  defaultSpeed)
+pi.set_PWM_dutycycle(motorFour,  defaultSpeed)
 
 print (" ")
 print ("motorOne: %s" % (pi.get_PWM_range(motorOne)))
