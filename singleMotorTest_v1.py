@@ -33,7 +33,6 @@ motorOne = res
 pi.set_PWM_frequency(motorOne, 400)
 pi.set_PWM_range(motorOne, 500)
 
-pi.set_PWM_dutycycle(motorOne,  motorOneSpeed)
 
 print (" ")
 print ("motorOne: %s" % (pi.get_PWM_range(motorOne)))
@@ -50,7 +49,7 @@ print ('Follow your reference key or press 9 to shutdown')
 cycling = True
 try:
     while cycling:
-        pi.set_PWM_dutycycle(motorOne,  motorOneSpeed)
+        pi.set_PWM_dutycycle(motorOne, motorOneSpeed)
 
         print ("motorOne: %s" % (motorOneSpeed))     
 
@@ -77,7 +76,7 @@ finally:
         if motorOneSpeed > 0:
             motorOneSpeed = motorOneSpeed - 1
         
-        if (motorOneSpeed == 0)
+        if (motorOneSpeed = 0)
             pi.set_PWM_dutycycle(motorOne,  motorOneSpeed)
             systemOn = False
             
