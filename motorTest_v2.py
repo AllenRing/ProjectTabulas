@@ -123,9 +123,9 @@ try:
         res = raw_input()
 
         if res == 'q':
-            motorOneSpeed = increaseSpeed(motorOneSpeed)
+            motorOneSpeed = motorOneSpeed + 5
         if res == 'a':
-            motorOneSpeed = decreaseSpeed(motorOneSpeed)
+            motorOneSpeed = motorOneSpeed - 5
         if res == 'z':
             motorOneSpeed = shutdownMotor(motorOneSpeed)        
 
