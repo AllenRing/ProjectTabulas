@@ -14,12 +14,11 @@ import time
 import pigpio
 
 pi = pigpio.pi()
-defaultSpeed = 185
 systemOn = True
-motorOne = defaultSpeed
-motorTwo = defaultSpeed
-motorThree = defaultSpeed
-motorFour = defaultSpeed
+motorOneSpeed = 185
+motorTwoSpeed = 185
+motorThreeSpeed = 185
+motorFourSpeed = 185
 
 #---------------------
 #------Functions------
