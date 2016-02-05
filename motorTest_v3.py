@@ -69,16 +69,16 @@ motorFour = res
 
 
 pi.set_PWM_frequency(motorOne, 400)
-pi.set_PWM_range(motorOne, 500)
+pi.set_PWM_range(motorOne, 2500)
 
 pi.set_PWM_frequency(motorTwo, 400)
-pi.set_PWM_range(motorTwo, 500)
+pi.set_PWM_range(motorTwo, 2500)
 
 pi.set_PWM_frequency(motorThree, 400)
-pi.set_PWM_range(motorThree, 500)
+pi.set_PWM_range(motorThree, 2500)
 
 pi.set_PWM_frequency(motorFour, 400)
-pi.set_PWM_range(motorFour, 500)
+pi.set_PWM_range(motorFour, 2500)
 
 
 pi.set_PWM_dutycycle(motorOne,  motorOneSpeed)
