@@ -155,7 +155,7 @@ finally:
         if motorFourSpeed > 0:
             motorFourSpeed = motorFourSpeed - 1
         
-        if (motorOneSpeed == 0) && (motorTwoSpeed == 0) && (motorThreeSpeed == 0) && (motorFourSpeed == 0):
+        if (motorOneSpeed == 0) and (motorTwoSpeed == 0) and (motorThreeSpeed == 0) and (motorFourSpeed == 0):
             pi.set_PWM_dutycycle(motorOne,  motorOneSpeed)
             pi.set_PWM_dutycycle(motorTwo,  motorTwoSpeed)
             pi.set_PWM_dutycycle(motorThree,  motorThreeSpeed)
