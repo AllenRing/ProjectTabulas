@@ -22,9 +22,8 @@ def initializePin(modPin):
     pi.set_PWM_range(modPin, 500)
 
 def shutdownMotor(motorSpeed):
-    while motorSpeed > 0:
-        motorSpeed = motorSpeed - 1
-        return motorSpeed
+    motorSpeed = 0
+    return motorSpeed
 
 #-----------------------------
 #------Begin the program------
@@ -64,6 +63,20 @@ motorFour = res
 initializePin(motorFour)
 motorFourSpeed = defaultSpeed
 
+print (" ")
+print ("motorOne: %s" % (pi.get_PWM_range(motorOne)))
+print ("motorOne: %s" % (pi.get_PWM_frequency(motorOne)))
+print (" ")
+print ("motorTwo: %s" % (pi.get_PWM_range(motorTwo)))
+print ("motorTwo: %s" % (pi.get_PWM_frequency(motorTwo)))
+print (" ")
+print ("motorThree: %s" % (pi.get_PWM_range(motorThree)))
+print ("motorThree: %s" % (pi.get_PWM_frequency(motorThree)))
+print (" ")
+print ("motorFour: %s" % (pi.get_PWM_range(motorFour)))
+print ("motorFour: %s" % (pi.get_PWM_frequency(motorFour)))
+print (" ")
+
 #----------------------------------------
 # All motors will now be initialized
 # The loop-to-follow will receive inputs and then change motorspeeds accordingly
@@ -71,6 +84,7 @@ motorFourSpeed = defaultSpeed
 
 print ('System initialized and running.')
 print ('Follow your reference key or press 9 to shutdown')
+print(" ")
 cycling = True
 try:
     while cycling:
@@ -78,6 +92,11 @@ try:
         pi.set_PWM_dutycycle(motorTwo,  motorTwoSpeed)
         pi.set_PWM_dutycycle(motorThree,  motorThreeSpeed)
         pi.set_PWM_dutycycle(motorFour,  motorFourSpeed)
+        
+        print ("motorOne: %s" % (motorOneSpeed))
+        print ("motorTwo: %s" % (motorTwoSpeed))
+        print ("motorThree: %s" % (motorThreeSpeed))
+        print ("motorFour: %s" % (motorFourSpeed))                         
 
         res = raw_input()
 
@@ -111,6 +130,7 @@ try:
 
         if res == '9':
             cycling = False
+        
     # End of while
 # End of Try
 
@@ -131,7 +151,7 @@ finally:
         if motorFourSpeed > 0:
             motorFourSpeed = motorFourSpeed - 1
         
-        if (motorOneSpeed = 0) && (motorTwoSpeed = 0) && (motorThreeSpeed = 0) && (motorFourSpeed = 0):
+        if ((motorOneSpeed == 0) and (motorTwoSpeed == 0) and (motorThreeSpeed == 0) and (motorFourSpeed == 0)):
             pi.set_PWM_dutycycle(motorOne,  motorOneSpeed)
             pi.set_PWM_dutycycle(motorTwo,  motorTwoSpeed)
             pi.set_PWM_dutycycle(motorThree,  motorThreeSpeed)
