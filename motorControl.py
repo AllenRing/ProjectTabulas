@@ -1,9 +1,24 @@
+#---------------------------------------------------------------------------------------------------------------|
+# Organization: AllenRing                                                                                       |
+# -- Created by Ritch                                                                                           |
+#                                                                                                               |
+# This program is responsible for controlling the settings of RPi pins and the speed of the attached motors.    |
+# It is also set up to execute other scripts (more to come).                                                    |
+#                                                                                                               |
+# Scripts:                                                                                                      |    
+#   motorSpeedLimiter                                                                                           |
+#     This program will countinuously check the frequency and dutycycle ranges of all pins assigned with motors.|
+#---------------------------------------------------------------------------------------------------------------|
+
 import time
 import pigpio
 
 pi = pigpio.pi()
-defaultSpeed = 180
 systemOn = True
+motorOneSpeed = 185
+motorTwoSpeed = 185
+motorThreeSpeed = 185
+motorFourSpeed = 185
 
 #---------------------
 #------Functions------
@@ -17,13 +32,10 @@ def decreaseSpeed(motorSpeed):
     motorSpeed = motorSpeed - 5
     return motorSpeed
 
-def initializePin(modPin):
-    pi.set_PWM_frequency(modPin, 400)
-    pi.set_PWM_range(modPin, 500)
-
 def shutdownMotor(motorSpeed):
-    motorSpeed = 0
-    return motorSpeed
+    while motorSpeed > 0:
+        motorSpeed = motorSpeed - 1
+        return motorSpeed
 
 #-----------------------------
 #------Begin the program------
@@ -42,26 +54,32 @@ print('***Enter Pins for Each Prompted Motor***')
 print('Motor 1')
 res = input()
 motorOne = res
-initializePin(motorOne)
-motorOneSpeed = defaultSpeed
 
 print('Motor 2')
 res = input()
 motorTwo = res
-initializePin(motorTwo)
-motorTwoSpeed = defaultSpeed
 
 print('Motor 3')
 res = input()
 motorThree = res
-initializePin(motorThree)
-motorThreeSpeed = defaultSpeed
 
 print('Motor 4')
 res = input()
 motorFour = res
-initializePin(motorFour)
-motorFourSpeed = defaultSpeed
+
+
+pi.set_PWM_frequency(motorOne, 400)
+pi.set_PWM_range(motorOne, 500)
+
+pi.set_PWM_frequency(motorTwo, 400)
+pi.set_PWM_range(motorTwo, 500)
+
+pi.set_PWM_frequency(motorThree, 400)
+pi.set_PWM_range(motorThree, 500)
+
+pi.set_PWM_frequency(motorFour, 400)
+pi.set_PWM_range(motorFour, 500)
+
 
 pi.set_PWM_dutycycle(motorOne,  motorOneSpeed)
 pi.set_PWM_dutycycle(motorTwo,  motorTwoSpeed)
@@ -89,7 +107,6 @@ print (" ")
 
 print ('System initialized and running.')
 print ('Follow your reference key or press 9 to shutdown')
-print(" ")
 cycling = True
 try:
     while cycling:
@@ -97,18 +114,18 @@ try:
         pi.set_PWM_dutycycle(motorTwo,  motorTwoSpeed)
         pi.set_PWM_dutycycle(motorThree,  motorThreeSpeed)
         pi.set_PWM_dutycycle(motorFour,  motorFourSpeed)
-        
+
         print ("motorOne: %s" % (motorOneSpeed))
         print ("motorTwo: %s" % (motorTwoSpeed))
         print ("motorThree: %s" % (motorThreeSpeed))
-        print ("motorFour: %s" % (motorFourSpeed))                         
+        print ("motorFour: %s" % (motorFourSpeed))     
 
         res = raw_input()
 
         if res == 'q':
-            motorOneSpeed = increaseSpeed(motorOneSpeed)
+            motorOneSpeed = motorOneSpeed + 5
         if res == 'a':
-            motorOneSpeed = decreaseSpeed(motorOneSpeed)
+            motorOneSpeed = motorOneSpeed - 5
         if res == 'z':
             motorOneSpeed = shutdownMotor(motorOneSpeed)        
 
@@ -135,7 +152,6 @@ try:
 
         if res == '9':
             cycling = False
-        
     # End of while
 # End of Try
 
@@ -156,12 +172,14 @@ finally:
         if motorFourSpeed > 0:
             motorFourSpeed = motorFourSpeed - 1
         
-        if ((motorOneSpeed == 0) and (motorTwoSpeed == 0) and (motorThreeSpeed == 0) and (motorFourSpeed == 0)):
+        if (motorOneSpeed == 0) and (motorTwoSpeed == 0) and (motorThreeSpeed == 0) and (motorFourSpeed == 0):
             pi.set_PWM_dutycycle(motorOne,  motorOneSpeed)
             pi.set_PWM_dutycycle(motorTwo,  motorTwoSpeed)
             pi.set_PWM_dutycycle(motorThree,  motorThreeSpeed)
             pi.set_PWM_dutycycle(motorFour,  motorFourSpeed)
             systemOn = False
+            
+monitoring = False
 
 print ("System Shutdown")
 
