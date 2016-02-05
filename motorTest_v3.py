@@ -86,6 +86,20 @@ pi.set_PWM_dutycycle(motorTwo,  motorTwoSpeed)
 pi.set_PWM_dutycycle(motorThree,  motorThreeSpeed)
 pi.set_PWM_dutycycle(motorFour,  motorFourSpeed)
 
+print (" ")
+print ("motorOne: %s" % (pi.get_PWM_range(motorOne)))
+print ("motorOne: %s" % (pi.get_PWM_frequency(motorOne)))
+print (" ")
+print ("motorTwo: %s" % (pi.get_PWM_range(motorTwo)))
+print ("motorTwo: %s" % (pi.get_PWM_frequency(motorTwo)))
+print (" ")
+print ("motorThree: %s" % (pi.get_PWM_range(motorThree)))
+print ("motorThree: %s" % (pi.get_PWM_frequency(motorThree)))
+print (" ")
+print ("motorFour: %s" % (pi.get_PWM_range(motorFour)))
+print ("motorFour: %s" % (pi.get_PWM_frequency(motorFour)))
+print (" ")
+
 
 #----------------------------------------
 # All motors will now be initialized
@@ -101,6 +115,11 @@ try:
         pi.set_PWM_dutycycle(motorTwo,  motorTwoSpeed)
         pi.set_PWM_dutycycle(motorThree,  motorThreeSpeed)
         pi.set_PWM_dutycycle(motorFour,  motorFourSpeed)
+
+        print ("motorOne: %s" % (motorOneSpeed))
+        print ("motorTwo: %s" % (motorTwoSpeed))
+        print ("motorThree: %s" % (motorThreeSpeed))
+        print ("motorFour: %s" % (motorFourSpeed))     
 
         res = raw_input()
 
