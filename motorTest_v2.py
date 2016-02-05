@@ -25,10 +25,6 @@ motorFour = defaultSpeed
 #------Functions------
 #---------------------
 
-def declareGlobalMotors:
-    global motorOne, motorTwo, motorThree, motorFour
-    global monitoring = True
-
 def increaseSpeed(motorSpeed):
     motorSpeed = motorSpeed + 5
     return motorSpeed
