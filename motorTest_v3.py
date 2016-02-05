@@ -15,10 +15,10 @@ import pigpio
 
 pi = pigpio.pi()
 systemOn = True
-motorOne = 185
-motorTwo = 185
-motorThree = 185
-motorFour = 185
+motorOneSpeed = 185
+motorTwoSpeed = 185
+motorThreeSpeed = 185
+motorFourSpeed = 185
 
 #---------------------
 #------Functions------
