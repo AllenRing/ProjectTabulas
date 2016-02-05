@@ -2,7 +2,7 @@ import time
 import pigpio
 
 pi = pigpio.pi()
-defaultSpeed = 185
+defaultSpeed = 180
 systemOn = True
 
 #---------------------
@@ -62,6 +62,11 @@ res = input()
 motorFour = res
 initializePin(motorFour)
 motorFourSpeed = defaultSpeed
+
+pi.set_PWM_dutycycle(motorOne,  motorOneSpeed)
+pi.set_PWM_dutycycle(motorTwo,  motorTwoSpeed)
+pi.set_PWM_dutycycle(motorThree,  motorThreeSpeed)
+pi.set_PWM_dutycycle(motorFour,  motorFourSpeed)
 
 print (" ")
 print ("motorOne: %s" % (pi.get_PWM_range(motorOne)))
