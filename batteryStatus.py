@@ -8,13 +8,13 @@ import os
 import RPi.GPIO as GPIO
  
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 DEBUG = 1
  
 # read SPI data from MCP3008 chip, 8 possible adc's (0 thru 7)
 def readadc(adcnum, clockpin, mosipin, misopin, cspin):
         if ((adcnum > 7) or (adcnum < 0)):
                 return -1
-        GPIO.setwarnings(False)
         GPIO.output(cspin, True)
  
         GPIO.output(clockpin, False)  # start clock low
@@ -60,10 +60,9 @@ GPIO.setup(SPICLK, GPIO.OUT)
 GPIO.setup(SPICS, GPIO.OUT)
  
 # 10k trim pot connected to adc #0
-potentiometer_adc = 0;
- 
-last_read = 0       # this keeps track of the last potentiometer value
-tolerance = 5       # to keep from being jittery we'll only change
-                    # volume when the pot has moved more than 5 'counts'
-trim_pot = readadc(potentiometer_adc, SPICLK, SPIMOSI, SPIMISO, SPICS)
-print "Battery status:", trim_pot
+battery_voltage = 0
+battery_adc = readadc(battery_voltage, SPICLK, SPIMOSI, SPIMISO, SPICS)
+battery_percentage = (948 - 837) / float(139) * 100
+print "Battery status (from ADC):", battery_adc
+print "Battery status (in percent):", battery_percentage
+print ('Battery is at {0:0.2f}'.format(battery_percentage))
